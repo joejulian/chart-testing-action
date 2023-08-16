@@ -97,7 +97,7 @@ install_chart_testing() {
 
         curl --retry 5 --retry-delay 1 -sSLo ct.tar.gz "https://github.com/joejulian/chart-testing/releases/download/v$version/chart-testing_${version#v}_linux_$arch.tar.gz"
         cosign verify-blob --certificate $CT_CERT --signature $CT_SIG \
-          --certificate-identity "https://github.com/joejulian/chart-testing/.github/workflows/release.yaml@refs/heads/main" \
+          --certificate-identity "https://github.com/joejulian/chart-testing/.github/workflows/release.yaml@refs/heads/fork" \
           --certificate-oidc-issuer "https://token.actions.githubusercontent.com" ct.tar.gz
         retVal=$?
         if [[ "${retVal}" -ne 0 ]]; then
